@@ -4,7 +4,7 @@
   "description": "Web-to-MCP: AI-Powered Website Component Capture System - Full-Stack MERN Project by Shreyansh Arora (24bcs10252)",
   "main": "index.html",
   "scripts": {
-    "start": "python3 healthcheck.py",
+    "start": "python3 -m http.server $PORT",
     "build": "echo 'Build already completed - static files ready'",
     "dev": "python3 -m http.server 8080"
   },
