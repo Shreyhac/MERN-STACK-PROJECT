@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "web-to-mcp": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-everything"
+      ],
+      "env": {
+        "MCP_SERVER_URL": "http://localhost:8000"
+      }
+    }
+  }
+}
