@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack Project - Shreyansh Arora (24bcs10252)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #22c55e;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .container {
+            text-align: center;
+            border: 2px solid #22c55e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 30px rgba(34, 197, 94, 0.3),
+                inset 0 0 30px rgba(34, 197, 94, 0.1);
+            max-width: 800px;
+            margin: 20px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            color: #22c55e;
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+            to { text-shadow: 0 0 30px rgba(34, 197, 94, 0.8), 0 0 40px rgba(34, 197, 94, 0.3); }
+        }
+        
+        .status {
+            color: #06b6d4;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+        
+        .info {
+            color: #64748b;
+            font-size: 1rem;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .tech-stack h3 {
+            color: #22c55e;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .tech-item {
+            display: inline-block;
+            margin: 8px;
+            padding: 8px 16px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 20px;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            font-size: 0.9rem;
+        }
+        
+        .features {
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features li {
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .features li:before {
+            content: "▶";
+            color: #22c55e;
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+        
+        .links {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .link {
+            color: #22c55e;
+            text-decoration: none;
+            border: 2px solid #22c55e;
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .link:hover:before {
+            left: 100%;
+        }
+        
+        .link:hover {
+            background: #22c55e;
+            color: #0a0a0a;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .github-link {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: #06b6d4;
+            color: #06b6d4;
+        }
+        
+        .github-link:hover {
+            background: #06b6d4;
+            color: #0a0a0a;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(34, 197, 94, 0.3);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    
+    <div class="container">
+        <h1>🚀 MERN Stack Project</h1>
+        <div class="status pulse">✅ Successfully Deployed!</div>
+        
+        <div class="info">
+            <p><strong>Developer:</strong> Shreyansh Arora</p>
+            <p><strong>Student ID:</strong> 24bcs10252</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/Shreyhac/MERN-STACK-PROJECT" style="color: #22c55e;">GitHub Repository</a></p>
+            <p><strong>Status:</strong> Live and Functional</p>
+        </div>
+
+        <div class="tech-stack">
+            <h3>🛠️ Tech Stack</h3>
+            <div class="tech-item">React 19</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">Tailwind CSS</div>
+            <div class="tech-item">Django 4.2</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Chrome Extension</div>
+            <div class="tech-item">WXT.dev</div>
+            <div class="tech-item">AI Integration</div>
+        </div>
+
+        <div class="features">
+            <h3 style="color: #22c55e; margin-bottom: 15px;">🎯 Key Features</h3>
+            <ul>
+                <li>Cyberpunk design with green matrix effects</li>
+                <li>Component capture and AI integration</li>
+                <li>Chrome extension for website capture</li>
+                <li>MCP protocol for AI assistants</li>
+                <li>Responsive design for all devices</li>
+                <li>OAuth2 authentication system</li>
+                <li>Real-time component analysis</li>
+                <li>Cursor and Claude integration</li>
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/Shreyhac/MERN-STACK-PROJECT" class="link github-link">📁 View Source Code</a>
+            <a href="https://github.com/Shreyhac/MERN-STACK-PROJECT#readme" class="link">📖 Read Documentation</a>
+            <a href="https://github.com/Shreyhac/MERN-STACK-PROJECT/issues" class="link">🐛 Report Issues</a>
+        </div>
+
+        <div class="footer">
+            <p>🎓 College Assignment Project | MERN Stack Development</p>
+            <p>Made with ❤️ by Shreyansh Arora (24bcs10252)</p>
+        </div>
+    </div>
+</body>
+</html>
