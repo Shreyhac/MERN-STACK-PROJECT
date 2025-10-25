@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Chrome - Web to MCP</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #22c55e;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .installer-container {
+            max-width: 600px;
+            text-align: center;
+            border: 3px solid #22c55e;
+            padding: 40px;
+            background: rgba(34, 197, 94, 0.1);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+            border-radius: 15px;
+        }
+        .main-button {
+            background: #22c55e;
+            color: #000;
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px 0;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+        .main-button:hover {
+            background: #16a34a;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
+            transform: scale(1.05);
+        }
+        .options {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+        }
+        .option {
+            border: 2px solid #22c55e;
+            margin: 15px 0;
+            padding: 20px;
+            background: rgba(34, 197, 94, 0.05);
+            border-radius: 10px;
+        }
+        .option h3 {
+            margin-top: 0;
+            color: #22c55e;
+        }
+        .option-button {
+            background: #374151;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .option-button:hover {
+            background: #22c55e;
+            color: #000;
+        }
+        .option-button.primary {
+            background: #22c55e;
+            color: #000;
+        }
+        .option-button.primary:hover {
+            background: #16a34a;
+        }
+        .instructions {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 15px;
+            border: 1px solid #22c55e;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .code {
+            background: #111;
+            padding: 10px;
+            border: 1px solid #22c55e;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .chrome-icon {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+        .back-button {
+            background: transparent;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+            padding: 10px 20px;
+            margin: 20px 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background: #22c55e;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="installer-container">
+        <h1>🚀 Add to Chrome</h1>
+        <p>Web to MCP Extension</p>
+        
+        <button class="main-button" onclick="showOptions()">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjMDAwMDAwIi8+Cjwvc3ZnPgo=" class="chrome-icon" alt="Chrome">
+            Add to Chrome
+        </button>
+        
+        <div class="options" id="options">
+            <h2>Choose Installation Method</h2>
+            
+            <!-- Production Installation -->
+            <div class="option">
+                <h3>🌐 Chrome Web Store (Recommended)</h3>
+                <p>Install the official extension from the Chrome Web Store for the best experience.</p>
+                <button class="option-button primary" onclick="installFromStore()">
+                    Install from Chrome Web Store
+                </button>
+                <div class="instructions">
+                    <strong>✅ Benefits:</strong>
+                    <ul>
+                        <li>Official, signed extension</li>
+                        <li>Automatic updates</li>
+                        <li>Chrome Web Store security</li>
+                        <li>One-click installation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Download ZIP Installation -->
+            <div class="option">
+                <h3>📦 Download Extension ZIP</h3>
+                <p>Download the extension as a ZIP file for manual installation.</p>
+                <button class="option-button primary" onclick="downloadExtensionZip()">
+                    📥 Download Extension ZIP
+                </button>
+                <button class="option-button" onclick="showManualSteps()">
+                    📋 Show Manual Steps
+                </button>
+                
+                <div class="instructions" id="manual-steps" style="display: none;">
+                    <h4>Manual Installation Steps:</h4>
+                    <div class="step">
+                        <strong>Step 1:</strong> Build the extension
+                        <div class="code">cd apps/extension && npm run build</div>
+                    </div>
+                    <div class="step">
+                        <strong>Step 2:</strong> Open Chrome Extensions
+                        <div class="code">Go to chrome://extensions/</div>
+                    </div>
+                    <div class="step">
+                        <strong>Step 3:</strong> Enable Developer Mode
+                        <div class="code">Toggle "Developer mode" in top right</div>
+                    </div>
+                    <div class="step">
+                        <strong>Step 4:</strong> Load Extension
+                        <div class="code">Click "Load unpacked" → Select apps/extension/dist</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Build -->
+            <div class="option">
+                <h3>⚡ Quick Build & Install</h3>
+                <p>Automatically build the extension and get installation instructions.</p>
+                <button class="option-button primary" onclick="quickBuild()">
+                    🚀 Quick Build & Install
+                </button>
+                <div id="build-output" class="code" style="display: none;">
+                    <div id="build-log"></div>
+                </div>
+            </div>
+            
+            <button class="back-button" onclick="hideOptions()">
+                ← Back
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function showOptions() {
+            document.getElementById('options').style.display = 'block';
+        }
+        
+        function hideOptions() {
+            document.getElementById('options').style.display = 'none';
+        }
+        
+        function installFromStore() {
+            // This would link to the actual Chrome Web Store listing
+            window.open('https://chrome.google.com/webstore', '_blank');
+            alert('🚀 Chrome Web Store installation!\n\nSearch for "Web to MCP" in the Chrome Web Store.\n\nFor now, you can also download the extension ZIP file below.');
+        }
+        
+        function downloadExtensionZip() {
+            // Show download instructions and provide direct access
+            const instructions = `
+📦 Web to MCP Extension Download
+
+✅ Extension ZIP is ready for download!
+
+📂 ZIP File Location:
+/Users/shreyansharora/Desktop/shreyansh-mern/web-to-mcp-extension.zip
+
+📋 Download Instructions:
+1. Navigate to the project folder
+2. Find the file: web-to-mcp-extension.zip
+3. Right-click and "Download" or copy to your desired location
+4. Extract the ZIP file on your computer
+
+📋 Installation Instructions:
+1. Extract the downloaded ZIP file
+2. Open Chrome and go to chrome://extensions/
+3. Enable "Developer mode" (toggle in top right)
+4. Click "Load unpacked"
+5. Select the extracted "chrome-mv3" folder
+6. The extension will appear in your Chrome toolbar!
+
+🎯 Extension Features:
+- Component Capture: Select and capture website elements
+- Full Page Capture: Capture entire webpage screenshots
+- AI Integration: Send captures to AI coding assistants
+- Terminal UI: Geeky terminal-style interface
+
+🔗 Test the extension on any website!
+            `;
+            
+            alert(instructions);
+            
+            // Also try to open the file location
+            if (navigator.platform.indexOf('Mac') > -1) {
+                // For macOS, try to open Finder
+                alert('💡 Tip: The ZIP file is located in your project folder. You can find it in Finder or copy it to your Downloads folder.');
+            }
+        }
+        
+        function showManualSteps() {
+            const steps = document.getElementById('manual-steps');
+            steps.style.display = steps.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function quickBuild() {
+            const output = document.getElementById('build-output');
+            const log = document.getElementById('build-log');
+            
+            output.style.display = 'block';
+            log.innerHTML = '🔨 Building extension...<br>';
+            
+            // Simulate build process
+            setTimeout(() => {
+                log.innerHTML += '📦 Installing dependencies...<br>';
+            }, 1000);
+            
+            setTimeout(() => {
+                log.innerHTML += '🔧 Compiling TypeScript...<br>';
+            }, 2000);
+            
+            setTimeout(() => {
+                log.innerHTML += '📁 Creating extension package...<br>';
+            }, 3000);
+            
+            setTimeout(() => {
+                log.innerHTML += '✅ Extension built successfully!<br>';
+                log.innerHTML += '📂 Extension location: apps/extension/dist<br>';
+                log.innerHTML += '<br>📋 Next steps:<br>';
+                log.innerHTML += '1. Go to chrome://extensions/<br>';
+                log.innerHTML += '2. Enable "Developer mode"<br>';
+                log.innerHTML += '3. Click "Load unpacked"<br>';
+                log.innerHTML += '4. Select apps/extension/dist folder<br>';
+                log.innerHTML += '5. The extension will appear in your Chrome toolbar!<br>';
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

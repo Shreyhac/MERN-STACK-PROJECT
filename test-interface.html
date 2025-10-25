@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web to MCP - Unified Test Interface</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #22c55e;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            border: 2px solid #22c55e;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        .service {
+            border: 1px solid #22c55e;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(34, 197, 94, 0.05);
+        }
+        .service h3 {
+            color: #22c55e;
+            margin-top: 0;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .status.running {
+            background: #22c55e;
+            color: #000;
+        }
+        .status.stopped {
+            background: #ef4444;
+            color: #fff;
+        }
+        .test-button {
+            background: #22c55e;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        .test-button:hover {
+            background: #16a34a;
+        }
+        .links {
+            margin: 20px 0;
+        }
+        .links a {
+            color: #22c55e;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        .links a:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+        .instructions {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 20px;
+            border: 1px solid #22c55e;
+            margin: 20px 0;
+        }
+        .code {
+            background: #111;
+            padding: 10px;
+            border: 1px solid #22c55e;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Web to MCP - Unified Test Interface</h1>
+            <p>Test all components of the Web to MCP platform</p>
+        </div>
+
+        <div class="service">
+            <h3>🌐 Frontend (React Web App)</h3>
+            <p>Status: <span class="status" id="frontend-status">Checking...</span></p>
+            <div class="links">
+                <a href="http://localhost:5173" target="_blank" id="frontend-link">
+                    🎯 Open Frontend Application
+                </a>
+            </div>
+            <p>Features: Cyberpunk UI, User Dashboard, Payment Integration</p>
+        </div>
+
+        <div class="service">
+            <h3>🔧 Backend API (Django)</h3>
+            <p>Status: <span class="status" id="backend-status">Checking...</span></p>
+            <div class="links">
+                <a href="http://localhost:8000" target="_blank" id="backend-link">
+                    🔗 Open Backend API
+                </a>
+                <a href="http://localhost:8000/admin" target="_blank">
+                    ⚙️ Django Admin Panel
+                </a>
+                <a href="http://localhost:8000/api/" target="_blank">
+                    📡 API Root
+                </a>
+            </div>
+            <p>Features: OAuth2, Stripe Integration, Capture Management</p>
+        </div>
+
+        <div class="service">
+            <h3>🔌 Chrome Extension</h3>
+            <p>Status: <span class="status" id="extension-status">Built</span></p>
+            <div class="instructions">
+                <h4>📋 Extension Setup Instructions:</h4>
+                <ol>
+                    <li>Open Chrome and go to <code>chrome://extensions/</code></li>
+                    <li>Enable "Developer mode" (toggle in top right)</li>
+                    <li>Click "Load unpacked"</li>
+                    <li>Select the <code>apps/extension/dist</code> folder</li>
+                    <li>The extension will appear in your Chrome toolbar</li>
+                </ol>
+            </div>
+            <p>Features: Component Capture, Full Page Capture, Terminal UI</p>
+        </div>
+
+        <div class="service">
+            <h3>🧪 Quick Tests</h3>
+            <button class="test-button" onclick="testBackend()">Test Backend API</button>
+            <button class="test-button" onclick="testFrontend()">Test Frontend</button>
+            <button class="test-button" onclick="testExtension()">Test Extension</button>
+            <button class="test-button" onclick="testAll()">Test Everything</button>
+            <div id="test-results"></div>
+        </div>
+
+        <div class="service">
+            <h3>📚 Development Commands</h3>
+            <div class="code">
+                # Start all services<br>
+                ./scripts/test-all.sh<br><br>
+                
+                # Individual services<br>
+                npm run dev:backend<br>
+                npm run dev:frontend<br>
+                npm run dev:extension<br><br>
+                
+                # Build extension<br>
+                cd apps/extension && npm run build
+            </div>
+        </div>
+
+        <div class="service">
+            <h3>🎯 Main Testing URL</h3>
+            <div class="links">
+                <a href="http://localhost:5173" target="_blank" style="font-size: 18px; font-weight: bold;">
+                    🚀 START HERE: http://localhost:5173
+                </a>
+            </div>
+            <p>This is your main testing interface. All other services connect through this URL.</p>
+        </div>
+    </div>
+
+    <script>
+        // Check service status
+        async function checkStatus() {
+            // Check backend
+            try {
+                const response = await fetch('http://localhost:8000/api/');
+                document.getElementById('backend-status').textContent = 'Running';
+                document.getElementById('backend-status').className = 'status running';
+            } catch (error) {
+                document.getElementById('backend-status').textContent = 'Stopped';
+                document.getElementById('backend-status').className = 'status stopped';
+            }
+
+            // Check frontend
+            try {
+                const response = await fetch('http://localhost:5173');
+                document.getElementById('frontend-status').textContent = 'Running';
+                document.getElementById('frontend-status').className = 'status running';
+            } catch (error) {
+                document.getElementById('frontend-status').textContent = 'Stopped';
+                document.getElementById('frontend-status').className = 'status stopped';
+            }
+        }
+
+        // Test functions
+        async function testBackend() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Testing backend...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/');
+                results.innerHTML = '<p style="color: #22c55e;">✅ Backend API is running!</p>';
+            } catch (error) {
+                results.innerHTML = '<p style="color: #ef4444;">❌ Backend API is not running</p>';
+            }
+        }
+
+        function testFrontend() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Opening frontend...</p>';
+            window.open('http://localhost:5173', '_blank');
+        }
+
+        function testExtension() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Extension should be loaded in Chrome. Check chrome://extensions/</p>';
+        }
+
+        function testAll() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Running all tests...</p>';
+            testBackend();
+            setTimeout(() => {
+                results.innerHTML += '<p>✅ All tests completed! Check the results above.</p>';
+            }, 2000);
+        }
+
+        // Check status on load
+        checkStatus();
+        setInterval(checkStatus, 5000); // Check every 5 seconds
+    </script>
+</body>
+</html>

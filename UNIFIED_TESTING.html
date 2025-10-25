@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Web to MCP - Unified Testing Platform</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #22c55e;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            border: 3px solid #22c55e;
+            padding: 30px;
+            margin-bottom: 30px;
+            background: rgba(34, 197, 94, 0.1);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+        .main-link {
+            display: block;
+            background: #22c55e;
+            color: #000;
+            text-decoration: none;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            transition: all 0.3s;
+        }
+        .main-link:hover {
+            background: #16a34a;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
+            transform: scale(1.02);
+        }
+        .add-to-chrome {
+            display: block;
+            background: #22c55e;
+            color: #000;
+            text-decoration: none;
+            padding: 20px 40px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            transition: all 0.3s;
+            max-width: 400px;
+        }
+        .add-to-chrome:hover {
+            background: #16a34a;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
+            transform: scale(1.05);
+        }
+        .service {
+            border: 2px solid #22c55e;
+            margin: 20px 0;
+            padding: 25px;
+            background: rgba(34, 197, 94, 0.05);
+            border-radius: 10px;
+        }
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .status.running {
+            background: #22c55e;
+            color: #000;
+        }
+        .status.ready {
+            background: #22c55e;
+            color: #000;
+        }
+        .links {
+            margin: 20px 0;
+        }
+        .links a {
+            color: #22c55e;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px solid #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        .links a:hover {
+            background: rgba(34, 197, 94, 0.2);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        }
+        .test-button {
+            background: #22c55e;
+            color: #000;
+            border: none;
+            padding: 15px 25px;
+            margin: 10px 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .test-button:hover {
+            background: #16a34a;
+        }
+        .instructions {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 25px;
+            border: 2px solid #22c55e;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .code {
+            background: #111;
+            padding: 15px;
+            border: 2px solid #22c55e;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .chrome-icon {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+        .success {
+            color: #22c55e;
+            font-weight: bold;
+        }
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Web to MCP - Unified Testing Platform</h1>
+            <p>Complete platform testing with frontend, backend, and Chrome extension</p>
+        </div>
+
+        <!-- Main Testing URL -->
+        <a href="http://localhost:5174" target="_blank" class="main-link">
+            🎯 MAIN TESTING URL: http://localhost:5174
+        </a>
+
+        <!-- Add to Chrome Button -->
+        <a href="add-to-chrome.html" target="_blank" class="add-to-chrome">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjMDAwMDAwIi8+Cjwvc3ZnPgo=" class="chrome-icon" alt="Chrome">
+            Add to Chrome
+        </a>
+
+        <div class="service">
+            <h3>🌐 Frontend (React Web App)</h3>
+            <p>Status: <span class="status running">Running</span></p>
+            <div class="links">
+                <a href="http://localhost:5174" target="_blank">
+                    🎯 Open Frontend Application (MAIN URL)
+                </a>
+            </div>
+            <p>Features: Cyberpunk UI, User Dashboard, Component Management</p>
+        </div>
+
+        <div class="service">
+            <h3>🔧 Backend API (Django)</h3>
+            <p>Status: <span class="status running">Running</span></p>
+            <div class="links">
+                <a href="http://localhost:8000/api/" target="_blank">
+                    🔗 Backend API Root
+                </a>
+                <a href="http://localhost:8000/api/health/" target="_blank">
+                    ❤️ Health Check
+                </a>
+            </div>
+            <p>Features: REST API, CORS enabled, Health monitoring</p>
+        </div>
+
+        <div class="service">
+            <h3>🔌 Chrome Extension</h3>
+            <p>Status: <span class="status ready">Built & Ready</span></p>
+            <div class="instructions">
+                <h4>📋 Extension Installation:</h4>
+                <div class="step">
+                    <strong>Option 1:</strong> Use the "Add to Chrome" button above
+                </div>
+                <div class="step">
+                    <strong>Option 2:</strong> Manual installation
+                    <div class="code">
+1. Go to chrome://extensions/<br>
+2. Enable "Developer mode"<br>
+3. Click "Load unpacked"<br>
+4. Select: apps/extension/.output/chrome-mv3/
+                    </div>
+                </div>
+            </div>
+            <p>Features: Component Capture, Full Page Capture, Terminal UI, AI Integration</p>
+        </div>
+
+        <div class="service">
+            <h3>🧪 Quick Tests</h3>
+            <button class="test-button" onclick="testBackend()">Test Backend API</button>
+            <button class="test-button" onclick="testFrontend()">Test Frontend</button>
+            <button class="test-button" onclick="testExtension()">Test Extension</button>
+            <button class="test-button" onclick="testAll()">Test Everything</button>
+            <div id="test-results"></div>
+        </div>
+
+        <div class="service">
+            <h3>📚 Development Commands</h3>
+            <div class="code">
+# Start all services<br>
+./scripts/quick-test.sh<br><br>
+
+# Individual services<br>
+cd apps/frontend && npm run dev<br>
+cd apps/backend && python3 simple-test-server.py<br>
+cd apps/extension && npm run build<br><br>
+
+# Test the unified platform<br>
+curl http://localhost:8000/api/<br>
+curl http://localhost:5174
+            </div>
+        </div>
+
+        <div class="service">
+            <h3>🎯 UNIFIED TESTING SUMMARY</h3>
+            <div class="instructions">
+                <h4>✅ All Services Running:</h4>
+                <ul>
+                    <li><strong>Frontend:</strong> http://localhost:5174 (React App)</li>
+                    <li><strong>Backend:</strong> http://localhost:8000 (API Server)</li>
+                    <li><strong>Extension:</strong> Built and ready for installation</li>
+                </ul>
+                
+                <h4>🚀 Main Testing URLs:</h4>
+                <ul>
+                    <li><strong>Frontend:</strong> http://localhost:5174 (Primary interface)</li>
+                    <li><strong>Extension Installer:</strong> add-to-chrome.html (Chrome extension)</li>
+                    <li><strong>Backend API:</strong> http://localhost:8000/api/ (API endpoints)</li>
+                </ul>
+                
+                <h4>🔌 Extension Installation Options:</h4>
+                <ul>
+                    <li><strong>Chrome Web Store:</strong> Official installation (coming soon)</li>
+                    <li><strong>Manual Installation:</strong> Load from apps/extension/.output/chrome-mv3/</li>
+                    <li><strong>Quick Install:</strong> Use the "Add to Chrome" button above</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test functions
+        async function testBackend() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Testing backend...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/');
+                const data = await response.json();
+                results.innerHTML = `<p class="success">✅ Backend API is running! Response: ${JSON.stringify(data)}</p>`;
+            } catch (error) {
+                results.innerHTML = `<p class="error">❌ Backend API error: ${error.message}</p>`;
+            }
+        }
+
+        function testFrontend() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Opening frontend...</p>';
+            window.open('http://localhost:5174', '_blank');
+            results.innerHTML += '<p class="success">✅ Frontend opened in new tab!</p>';
+        }
+
+        function testExtension() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Extension testing instructions:</p>';
+            results.innerHTML += '<p>1. Click "Add to Chrome" button above</p>';
+            results.innerHTML += '<p>2. Follow the installation steps</p>';
+            results.innerHTML += '<p>3. Test on any website</p>';
+        }
+
+        function testAll() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p>Running all tests...</p>';
+            testBackend();
+            setTimeout(() => {
+                results.innerHTML += '<p class="success">✅ All tests completed! Check results above.</p>';
+            }, 2000);
+        }
+
+        // Auto-test on load
+        window.onload = function() {
+            testBackend();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: web_to_mcp_db
+      MYSQL_USER: web_to_mcp_user
+      MYSQL_PASSWORD: web_to_mcp_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - web-to-mcp-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql://web_to_mcp_user:web_to_mcp_password@db:3306/web_to_mcp_db
+      - DEBUG=True
+      - SECRET_KEY=your-secret-key-here
+    depends_on:
+      - db
+    volumes:
+      - ./apps/backend:/app
+    networks:
+      - web-to-mcp-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    volumes:
+      - ./apps/frontend:/app
+    networks:
+      - web-to-mcp-network
+
+volumes:
+  mysql_data:
+
+networks:
+  web-to-mcp-network:
+    driver: bridge

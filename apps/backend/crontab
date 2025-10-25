@@ -1,0 +1,2 @@
+1 * * * * source /home/ubuntu/env/backend-env.sh && cd /home/ubuntu/code/backend && uv run python daily_metrics_scheduler.py >> /home/ubuntu/logs/metrics_cron.log
+1 * * * * source /home/ubuntu/env/backend-env.sh && cd /home/ubuntu/code/backend && uv run python daily_archival_scheduler.py >> /home/ubuntu/logs/archival_cron.log
